@@ -29,9 +29,7 @@ class image_converter:
       self.cmd_pub.publish(self.vel)
       rate.sleep()
     self.image_sub = rospy.Subscriber("/camera/color/image_raw",Image,self.callback)
-    # self.theta1=0
-    # self.theta2=0
-    # self.theta3=0
+
 
 
   def callback(self,data):
@@ -84,17 +82,7 @@ class image_converter:
 
       if 30 < theta and theta < 150:
         self.vel.angular.z = 0.9*(math.pi/2 * (90-theta)/90)
-      # elif 39<theta<40:
-      #     self.counter+=1
 
-      # if self.counter==40:
-      #     self.vel.angular.z = 0.9*(math.pi/2 * (90-80)/90)
-      #     self.counter1+=1
-
-    
-      # if self.counter1==10:
-      #     self.counter1=0
-      #     self.counter=0    
 
 
         
@@ -103,56 +91,6 @@ class image_converter:
 
     self.cmd_pub.publish(self.vel)
 
-
-    # v = 1.2
-    # v = 2.2
-    # if lines is not None:
-    #     for i in range(0, len(lines)):
-
-    #         l = lines[i][0]
-    #         slope = (l[3]-l[1])/(l[2]-l[0])
-    #         theta = math.atan(slope)
-    #         theta = round(theta,2)
-
-             
-    #         if 200 < x and x < 440:
-
-
-            # if (100<l[0]<280) and (l[2]-l[0])!= 0: #st
-            #   d_theta = (math.pi/2)-theta
-            #   print("center",l[0])
-            #   self.vel.linear.x = v
-            #   if d_theta>0.4:
-            #     self.vel.angular.z = d_theta
-            #     self.cmd_pub.publish(self.vel)
-            #   else:
-            #     self.vel.angular.z = 0
-            #     self.cmd_pub.publish(self.vel)
-
-
-            # if slope>0 and l[0]>100: #right
-            #   d_theta= ((math.pi/2)-theta)
-            #   print("right",l[0])
-            #   self.vel.linear.x = v
-            #   if d_theta>0.4:
-            #     self.vel.angular.z = -d_theta
-            #     self.cmd_pub.publish(self.vel)
-            #     #math.pi/2 * (90-theta)/90
-            #   else:
-            #     self.vel.angular.z = 0
-            #     self.cmd_pub.publish(self.vel)
-
-
-            # elif slope<0 and l[0]<150: #left
-            #   d_theta= ((math.pi/2)-theta)
-            #   print("left",l[0])
-            #   self.vel.linear.x = v
-            #   if d_theta>0.4:
-            #     self.vel.angular.z = d_theta
-            #     self.cmd_pub.publish(self.vel)
-            #   else:
-            #     self.vel.angular.z = 0
-            #     self.cmd_pub.publish(self.vel)
     
 
     cv.imshow("Image window", image)
